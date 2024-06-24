@@ -1,0 +1,235 @@
+
+pavle@Pavlena MINGW64 ~
+$ cd Desktop/demo-squash
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash
+$ repo init
+bash: repo: command not found
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash
+$ git init
+Initialized empty Git repository in C:/Users/pavle/Desktop/demo-squash/.git/
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git add .
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git commit -m "Repo init"
+[main (root-commit) aa0ecb3] Repo init
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file1.txt
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git checkout -b feature
+Switched to a new branch 'feature'
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git add .
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git commit -m "Add new file"
+[feature c9368d7] Add new file
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ rename file1.txt => file1.txt.txt (100%)
+ create mode 100644 file2.txt.txt
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git status
+On branch feature
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file2.txt.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git add .
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git commit -m "Add some info in the file"
+[feature 266e397] Add some info in the file
+ 1 file changed, 1 insertion(+)
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git add .
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git commit -m "Add method"
+[feature 5506b46] Add method
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git add .
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git commit -m "Add comment"
+[feature 535e544] Add comment
+ 1 file changed, 2 insertions(+)
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git log --obeline
+fatal: unrecognized argument: --obeline
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git log --oneline
+535e544 (HEAD -> feature) Add comment
+5506b46 Add method
+266e397 Add some info in the file
+c9368d7 Add new file
+aa0ecb3 (main) Repo init
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git rebase -i HEAD~4
+[detached HEAD 9dca6ad] Add new file with new method in it
+ Date: Mon Jun 24 16:24:46 2024 +0300
+ 2 files changed, 8 insertions(+)
+ rename file1.txt => file1.txt.txt (100%)
+ create mode 100644 file2.txt.txt
+Successfully rebased and updated refs/heads/feature.
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git log --oneline
+9dca6ad (HEAD -> feature) Add new file with new method in it
+aa0ecb3 (main) Repo init
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (feature)
+$ git switch main
+Switched to branch 'main'
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git merge feature
+Updating aa0ecb3..9dca6ad
+Fast-forward
+ file1.txt => file1.txt.txt | 0
+ file2.txt.txt              | 8 ++++++++
+ 2 files changed, 8 insertions(+)
+ rename file1.txt => file1.txt.txt (100%)
+ create mode 100644 file2.txt.txt
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git log --oneline
+9dca6ad (HEAD -> main, feature) Add new file with new method in it
+aa0ecb3 Repo init
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git push
+fatal: No configured push destination.
+Either specify the URL from the command-line or configure a remote repository using
+
+    git remote add <name> <url>
+
+and then push using the remote name
+
+    git push <name>
+
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$  git remote add demo-squash https://github.com/hypey-pi/demo-squash.git
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git push
+fatal: The current branch main has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream demo-squash main
+
+To have this happen automatically for branches without a tracking
+upstream, see 'push.autoSetupRemote' in 'git help config'.
+
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$  git push --set-upstream demo-squash main
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (6/6), 617 bytes | 617.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/hypey-pi/demo-squash.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'demo-squash/main'.
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git add .
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git status
+On branch main
+Your branch is up to date with 'demo-squash/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    file1.txt.txt -> file1.txt
+        renamed:    file2.txt.txt -> file2.txt
+
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git push
+Everything up-to-date
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git pull
+Already up to date.
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git status
+On branch main
+Your branch is up to date with 'demo-squash/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    file1.txt.txt -> file1.txt
+        renamed:    file2.txt.txt -> file2.txt
+
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git pull
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 1001 bytes | 83.00 KiB/s, done.
+From https://github.com/hypey-pi/demo-squash
+   9dca6ad..1b66ba9  main       -> demo-squash/main
+Updating 9dca6ad..1b66ba9
+Fast-forward
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git status
+On branch main
+Your branch is up to date with 'demo-squash/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        renamed:    file1.txt.txt -> file1.txt
+        renamed:    file2.txt.txt -> file2.txt
+
+
+pavle@Pavlena MINGW64 ~/Desktop/demo-squash (main)
+$ git log
+commit 1b66ba9af25c1fd9ca943b629dd69c361053c0d5 (HEAD -> main, demo-squash/main)
+)
+Author: Pavlena Iv <93715102+hypey-pi@users.noreply.github.com>
+Date:   Mon Jun 24 16:39:58 2024 +0300
+
+    Create README.md
+
+commit 9dca6ad75e247f58c8e5683075627ad1eedcff19 (feature)
+Author: Pavlena Ivanova <pavlena.ivn@gmail.com>
+Date:   Mon Jun 24 16:24:46 2024 +0300
+
+    Add new file with new method in it
+
+commit aa0ecb3c5f430302d48a2824ecb9df35339338eb
+Author: Pavlena Ivanova <pavlena.ivn@gmail.com>
+Date:   Mon Jun 24 16:23:13 2024 +0300
+
+    Repo init
+(END)
